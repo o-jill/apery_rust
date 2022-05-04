@@ -1,3 +1,4 @@
+/// entry point.
 fn main() {
     std::thread::Builder::new()
         .stack_size(apery::stack_size::STACK_SIZE)
