@@ -516,6 +516,7 @@ fn csa_record_to_sfen(csa: &[u8]) -> Result<String> {
     Ok(s)
 }
 
+/// usi command loop.
 pub fn cmd_loop() {
     let mut tt = TranspositionTable::new();
     #[cfg(feature = "kppt")]
@@ -533,7 +534,9 @@ pub fn cmd_loop() {
     let mut pos = Position::new();
     let mut is_ready = false;
     loop {
+        // read a command.
         let cmd = if std::env::args().len() == 1 {
+            // read stdin.
             let mut cmd = String::new();
             // std::io::stdin().read_line() includes "\n"
             match std::io::stdin().read_line(&mut cmd) {
@@ -542,6 +545,7 @@ pub fn cmd_loop() {
             }
             cmd
         } else {
+            // read command option.
             let mut cmd = String::new();
             for arg in std::env::args().skip(1) {
                 cmd.push_str(&arg);
